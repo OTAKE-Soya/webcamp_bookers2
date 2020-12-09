@@ -11,8 +11,15 @@
 
   <body>
     <header>
-      <h1>ヘッダーヘッダーヘッダーヘッダー<%= link_to "users", users_path %><%= link_to "books", books_path %></h1>
+      <h1><%= link_to "bookers", root_path %> ヘッダーヘッダー
+      <% if user_signed_in? %>
+      <%= link_to "home", user_path(current_user.id) %> <%= link_to "users", users_path %> <%= link_to "books", books_path %> <%= link_to "log out", destroy_user_session_path, method: :delete %>
+      <% else %>
+      <%= link_to "users", users_path %> <%= link_to "books", books_path %>
+      <% end %>
+      </h1>
     </header>
+    
     <%= yield %>
     <footer>
       <h1>フッターフッターフッターフッターフッターフッター</h1>

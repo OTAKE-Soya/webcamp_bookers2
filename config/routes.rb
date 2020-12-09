@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
   resources :users, only: [:index, :edit, :show]
-  resources :books, only: [:index, :edit, :show, :destroy]
+  resources :books, only: [:index, :edit, :show, :destroy, :create]
+  # post 'users/:id' => 'users#create'
 end
