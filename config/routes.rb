@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :users, only: [:index, :edit, :show]
   resources :books, only: [:index, :edit, :show, :destroy, :create]
+  # post 'users/:id' => 'users#create'
 end
