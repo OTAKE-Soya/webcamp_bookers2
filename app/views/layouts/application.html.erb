@@ -11,7 +11,13 @@
 
   <body>
     <header>
-      <h1>ヘッダーヘッダーヘッダー<%= link_to "home", user_path(current_user.id) %> <%= link_to "users", users_path %> <%= link_to "books", books_path %></h1>
+      <h1>ヘッダーヘッダーヘッダー
+      <% if user_signed_in? %>
+      <%= link_to "home", user_path(current_user.id) %> <%= link_to "users", users_path %> <%= link_to "books", books_path %> <%= link_to "log out", destroy_user_session_path, method: :delete %>
+      <% else %>
+      <%= link_to "users", users_path %> <%= link_to "books", books_path %>
+      <% end %>
+      </h1>
     </header>
     <%= yield %>
     <footer>
