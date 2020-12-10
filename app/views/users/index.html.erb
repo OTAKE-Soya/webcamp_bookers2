@@ -3,12 +3,14 @@
 <table>
     <tr>
         <th>id</th>
+        <th>image</th>
         <th>name</th>
         <th></th>
     </tr>
     <% @users.each do |user| %>
         <tr>
             <td><%= user.id %></td>
+            <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:"40x40" %></td>
             <td><%= user.name %></td>
             <td><%= link_to "show", user_path(user.id)%></td>
         </tr>
