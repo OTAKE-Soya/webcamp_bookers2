@@ -1,5 +1,5 @@
 <%= render "/sidebar", user: @book.user, book: @new_book%>
-<h1>book detail</h1>
+<h1>Book detail</h1>
 
 <%= link_to @book.user.name, user_path(@book.user.id)  %>
 <%= link_to @book.title, book_path(@book.id) %>
