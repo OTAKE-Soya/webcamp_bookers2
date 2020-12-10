@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :show, :update]
   resources :books, only: [:index, :edit, :show, :destroy, :create]
   # post 'users/:id' => 'users#create'
+  get "home/about" => "homes#about"
 end
