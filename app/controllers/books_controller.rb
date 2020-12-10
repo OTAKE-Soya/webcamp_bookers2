@@ -13,7 +13,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to user_path(current_user.id) #リダイレクト先は最終的には投稿したbookのshow#
+      redirect_to book_path(@book.id) #リダイレクト先は最終的には投稿したbookのshow#
     else
       redirect_to root_path
     end
