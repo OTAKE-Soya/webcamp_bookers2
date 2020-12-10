@@ -1,9 +1,11 @@
 <%= render "/sidebar", user: @book.user, book: @new_book%>
 <h1>book detail</h1>
-<%= link_to user_path(@book.user.id) do %>
-  <%= @book.user.name %>
-<% end %>
-<%= link_to book_path(@book.id) do %>
-  <%= @book.title %>
-<% end %>
+
+<%= link_to @book.user.name, user_path(@book.user.id)  %>
+<%= link_to @book.title, book_path(@book.id) %>
 <%= @book.body %>
+
+<% if current_user == @book.user %>
+  <%= link_to "Edit", edit_user_path(@book.id)%>
+  <%= link_to "Destroy", book_path(@book.id), method: :delete%>
+<% end %>
