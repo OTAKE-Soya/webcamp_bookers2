@@ -1,2 +1,16 @@
 <%= render '/sidebar', user: @user %>
 <h1>users</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th></th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to "show", user_path(user.id)%></td>
+        </tr>
+    <% end %>
+</table>
