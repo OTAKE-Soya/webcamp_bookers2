@@ -1,6 +1,7 @@
 <h2>サイドバーサイドバーサイドバー</h2>
 <h1>user info</h1>
 
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
 <h3>name</h3>
 <h4>
   <%= user.name %>
@@ -18,7 +19,7 @@
 </h4>
 <%= link_to "edit", edit_user_path(user.id)%>
 <h1>new book</h1>
-<%= form_with model: @book, url: books_path, local:true do |f| %>
+<%= form_with model: book, url: books_path, local:true do |f| %>
 <h4>title</h4>
 <%= f.text_field :title %>
 <h4>body</h4>
