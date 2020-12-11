@@ -4,18 +4,40 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/fdcdec1fce.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <h1><%= link_to "Bookers", root_path %> ヘッダーヘッダー
+      <h1><%= link_to "Bookers", root_path %>
       <% if user_signed_in? %>
-      <%= link_to "home", user_path(current_user.id) %> <%= link_to "users", users_path %> <%= link_to "books", books_path %> <%= link_to "logout", destroy_user_session_path, method: :delete %>
+        <%= link_to user_path(current_user.id) do %>
+          <i class="fas fa-home"></i> Home
+        <% end %>
+        <%= link_to users_path do %>
+          <i class="fas fa-users"></i> Users
+        <% end %>
+        <%= link_to books_path do %>
+          <i class="fas fa-book-open"></i> Books
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i> logout
+        <% end %>
       <% else %>
-      <%= link_to "Home", root_path %> <%= link_to "About", home_about_path %> <%= link_to "sign up", new_user_registration_path %> <%= link_to "login", new_user_session_path %>
+        <%= link_to root_path do %>
+          <i class="fas fa-home"></i> Home
+        <% end %>
+        <%= link_to home_about_path do %>
+          <i class="fas fa-link"></i> About
+        <% end %>
+        <%= link_to new_user_registration_path do %>
+          <i class="fas fa-user-plus"></i> sign up
+        <% end %>
+        <%= link_to new_user_session_path do %>
+          <i class="fas fa-sign-in-alt"></i> login
+        <% end %>
       <% end %>
       </h1>
     </header>
@@ -53,7 +75,7 @@
       <%= yield %>
     </main>
     <footer>
-      <h1>フッターフッターフッターフッターフッターフッター</h1>
+      <h1>CopyRight Infratop.inc</h1>
     </footer>
   </body>
 </html>

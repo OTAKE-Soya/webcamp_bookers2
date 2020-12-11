@@ -17,7 +17,9 @@
 <h4>
   <%= user.email %>
 </h4>
-<%= link_to "edit", edit_user_path(user.id)%>
+<%= link_to edit_user_path(user.id) do %>
+  <i class="fas fa-user-cog"></i>
+<% end %>
 <h1>New book</h1>
 <%= form_with model: book, url: books_path, local:true do |f| %>
 <h4>title</h4>
