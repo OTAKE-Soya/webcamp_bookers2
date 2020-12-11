@@ -19,8 +19,39 @@
       <% end %>
       </h1>
     </header>
-
-    <%= yield %>
+    <main>
+      <%= flash[:notice]%>
+      <%= flash[:alert]%>
+      <% if ( flash[:title_error] or flash[:body_error] ) %>
+        <ul>
+          <% if flash[:title_error] %>
+            <li>
+              <%= flash[:title_error] %>
+            </li>
+          <% end %>
+          <% if flash[:body_error] %>
+            <li>
+              <%= flash[:body_error] %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if ( flash[:name_error] or flash[:introduction_error] ) %>
+        <ul>
+          <% if flash[:name_error] %>
+            <li>
+              <%= flash[:name_error] %>
+            </li>
+          <% end %>
+          <% if flash[:introduction_error] %>
+            <li>
+              <%= flash[:introduction_error] %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= yield %>
+    </main>
     <footer>
       <h1>フッターフッターフッターフッターフッターフッター</h1>
     </footer>
