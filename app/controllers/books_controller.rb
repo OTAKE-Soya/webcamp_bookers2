@@ -13,16 +13,62 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to user_path(current_user.id) #リダイレクト先は最終的には投稿したbookのshow#
+      flash[:notice] = "You have created book successfully."
+      redirect_to book_path(@book.id)
     else
-      redirect_to root_path
+      count = 0
+      if @book.title == ""
+        flash[:title_error] = "Title can't be blank"
+        count = count + 1
+      end
+      if @book.body == ""
+        flash[:body_error] = "Body can't be blank"
+        count = count + 1
+      end
+      if @book.body.length > 200
+        flash[:body_error] = "Body is too long (maximum is 200 characters)"
+        count = count + 1
+      end
+      flash[:alert] = "#{count} errors prohibited this obj from being saved:"
+      redirect_to books_path
     end
   end
 
   def edit
+    @book = Book.find(params[:id])
+    if @book.user != current_user
+      redirect_to books_path
+    end
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      flash[:notice] = "You have updated book successfully."
+      redirect_to book_path(@book.id)
+    else
+      count = 0
+      if @book.title == ""
+        flash[:title_error] = "Title can't be blank"
+        count = count + 1
+      end
+      if @book.body == ""
+        flash[:body_error] = "Body can't be blank"
+        count = count + 1
+      end
+      if @book.body.length > 200
+        flash[:body_error] = "Body is too long (maximum is 200 characters)"
+        count = count + 1
+      end
+      flash[:alert] = "#{count} errors prohibited this obj from being saved:"
+      redirect_to edit_book_path(@book.id)
+    end
   end
 
   def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
   end
 
   def show
