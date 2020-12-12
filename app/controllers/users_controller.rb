@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         count = count + 1
       end
       flash[:alert] = "#{count} errors prohibited this obj from being saved:"
-      redirect_to edit_user_path(@user.id)
+      render :edit
     end
   end
 
