@@ -61,7 +61,7 @@ class BooksController < ApplicationController
         count = count + 1
       end
       flash[:alert] = "#{count} errors prohibited this obj from being saved:"
-      redirect_to edit_book_path(@book.id)
+      render :edit
     end
   end
 
