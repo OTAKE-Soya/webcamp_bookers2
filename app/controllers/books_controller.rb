@@ -16,21 +16,24 @@ class BooksController < ApplicationController
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book.id)
     else
-      count = 0
-      if @book.title == ""
-        flash[:title_error] = "Title can't be blank"
-        count = count + 1
-      end
-      if @book.body == ""
-        flash[:body_error] = "Body can't be blank"
-        count = count + 1
-      end
-      if @book.body.length > 200
-        flash[:body_error] = "Body is too long (maximum is 200 characters)"
-        count = count + 1
-      end
-      flash[:alert] = "#{count} errors prohibited this obj from being saved:"
-      redirect_to books_path
+      # count = 0
+      # if @book.title == ""
+      #   flash[:title_error] = "Title can't be blank"
+      #   count = count + 1
+      # end
+      # if @book.body == ""
+      #   flash[:body_error] = "Body can't be blank"
+      #   count = count + 1
+      # end
+      # if @book.body.length > 200
+      #   flash[:body_error] = "Body is too long (maximum is 200 characters)"
+      #   count = count + 1
+      # end
+      # flash[:alert] = "#{count} errors prohibited this obj from being saved:"
+      # redirect_to books_path
+      @user = current_user
+      @books = Book.all
+      render :index
     end
   end
 
@@ -72,8 +75,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
-    @new_book = Book.new
+    @show_book = Book.find(params[:id])
+    @book = Book.new
   end
 
   private
