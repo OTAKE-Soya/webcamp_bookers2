@@ -9,7 +9,7 @@
               <div>
                 <%= attachment_image_tag @show_book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %>
               </div>
-              <%= link_to @show_book.user.name, user_path(@show_book.user.id)  %>
+              <%= link_to @show_book.user.name, user_path(@show_book.user.id) %>
             </td>
             <td><%= link_to @show_book.title, book_path(@show_book.id) %></td>
             <td><%= @show_book.body %></td>
@@ -19,11 +19,27 @@
             <% end %>
           </tr>
         </table>
+        <h3>Comments</h3>
+        <%= form_with model: [@show_book, @comment], local: true do |f| %>
+          <div class="form_group">
+            <label for="input_comment">
+              <%= f.text_area :comment, id: "input_comment", class: "form_control comment" %>
+            </label>
+          </div>
+          <div class="form_group">
+            <%= f.submit "Submit Comment"%>
+          </div>
+        <% end %>
+        <table class="table">
+          <% @show_book.comments.each do |comment| %>
+            <tr>
+              <td><%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40"  %></td>
+              <td><%= comment.created_at%></td>
+              <td><%= comment.comment %></td>
+            </tr>
 
-
-
-
-
+          <% end %>
+        </table>
 
       </div>
     </div>
