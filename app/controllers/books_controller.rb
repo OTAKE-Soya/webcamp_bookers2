@@ -50,20 +50,20 @@ class BooksController < ApplicationController
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(@book.id)
     else
-      count = 0
-      if @book.title == ""
-        flash[:title_error] = "Title can't be blank"
-        count = count + 1
-      end
-      if @book.body == ""
-        flash[:body_error] = "Body can't be blank"
-        count = count + 1
-      end
-      if @book.body.length > 200
-        flash[:body_error] = "Body is too long (maximum is 200 characters)"
-        count = count + 1
-      end
-      flash[:alert] = "#{count} errors prohibited this obj from being saved:"
+      # count = 0
+      # if @book.title == ""
+      #   flash[:title_error] = "Title can't be blank"
+      #   count = count + 1
+      # end
+      # if @book.body == ""
+      #   flash[:body_error] = "Body can't be blank"
+      #   count = count + 1
+      # end
+      # if @book.body.length > 200
+      #   flash[:body_error] = "Body is too long (maximum is 200 characters)"
+      #   count = count + 1
+      # end
+      # flash[:alert] = "#{count} errors prohibited this obj from being saved:"
       render :edit
     end
   end
