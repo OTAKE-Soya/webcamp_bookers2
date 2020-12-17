@@ -20,6 +20,12 @@
           </tr>
         </table>
         <h3>Comments</h3>
+        <% if @comment.errors.any? %>
+          <h4 class="text-danger">error</h4>
+          <ul>
+            <li><%= @comment.errors.full_messages[0] %></li>
+          </ul>
+        <% end %>
         <%= form_with model: [@show_book, @comment], local: true do |f| %>
           <div class="form_group">
             <label for="input_comment">
@@ -33,7 +39,13 @@
         <table class="table">
           <% @show_book.comments.each do |comment| %>
             <tr>
-              <td><%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40"  %></td>
+              <td>
+                <div>
+                  <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40"  %>
+                </div>
+
+                <%= link_to comment.user.name, user_path(comment.user.id) %>
+              </td>
               <td><%= comment.created_at%></td>
               <td><%= comment.comment %></td>
             </tr>
