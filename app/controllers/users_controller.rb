@@ -25,21 +25,6 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
-      # count = 0
-      # if @user.name.length < 2
-      #   flash[:name_error] = "Name is too short (minimum is 2 characters)"
-      #   count = count + 1
-      # end
-      # if @user.name.length > 20
-      #   flash[:name_error] = "Name is too long (maximum is 20 characters)"
-      #   count = count + 1
-      # end
-      # if @user.introduction.length > 50
-      #   flash[:introduction_error] = "Introduction is too long (maximum is 50 characters)"
-      #   count = count + 1
-      # end
-      # flash[:alert] = "#{count} errors prohibited this obj from being saved:"
-      
       render :edit
     end
   end
